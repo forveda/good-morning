@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 🌸</title>
+
+<style>
+body {
+  margin:0;
+  padding:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
+  font-family: 'Segoe UI', sans-serif;
+  text-align:center;
+}
+
+.box {
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  width:80%;
+  max-width:400px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color:#ff4d88;
+}
+
+p {
+  color:#444;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.heart {
+  font-size:22px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+button {
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  background:#ff4d88;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Good Morning ☀️</h2>
+
+  <p id="text">Click below...</p>
+
+  <button onclick="showMessage()">Open 💌</button>
+
+  <p class="heart">❤️</p>
+</div>
+
+<script>
+function showMessage() {
+  let message = "Hey... just a small thing for you 😊\n\n" +
+  "I hope you woke up feeling a little lighter today.\n" +
+  "And even if you didn't, it's okay...\n\n" +
+  "Just don't overthink too much, alright?\n" +
+  "Everything doesn't need to be figured out at once.\n\n" +
+  "And one more thing...\n\n" +
+  "Keep smiling ✨\n" +
+  "Because your smile is honestly more precious than you think.\n\n" +
+  "Take your time, take care of yourself,\n" +
+  "and I hope your day goes really well 🌸";
+
+  document.getElementById("text").innerText = "";
+  let i = 0;
+
+  function typeWriter() {
+    if (i < message.length) {
+      document.getElementById("text").innerText += message.charAt(i);
+      i++;
+      setTimeout(typeWriter, 30);
+    }
+  }
+
+  typeWriter();
+}
+</script>
+
+</body>
+</html>

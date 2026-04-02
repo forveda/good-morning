@@ -33,18 +33,9 @@ h2 {
 p {
   color:#444;
   font-size:16px;
-  line-height:1.6;
-}
-
-.heart {
-  font-size:22px;
-  animation: beat 1s infinite;
-}
-
-@keyframes beat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  line-height:1.8;
+  opacity:0;
+  transition: opacity 1s ease;
 }
 
 button {
@@ -55,6 +46,18 @@ button {
   color:white;
   border-radius:10px;
   cursor:pointer;
+}
+
+.heart {
+  font-size:22px;
+  margin-top:10px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 </style>
 
@@ -69,31 +72,45 @@ button {
 
   <button onclick="showMessage()">Open 💌</button>
 
-  <p class="heart">❤️</p>
+  <div class="heart">❤️</div>
 </div>
 
 <script>
 function showMessage() {
- let message = `Hey... just a small thing for you 😊
 
-I hope you woke up feeling a little lighter today.
-And even if you didn't, it's okay...
+let message = `Hey... just a small thing for you 😊<br><br>
 
-Just don't overthink too much, alright?
-Everything doesn't need to be figured out at once.
+I hope you woke up feeling a little lighter today.<br>
+And even if you didn't, it's okay...<br><br>
 
-And one more thing...
+Just don't overthink too much, alright?<br>
+Everything doesn't need to be figured out at once.<br><br>
 
-Keep smiling ✨
-Because your smile is honestly more precious than you think.
+And one more thing...<br><br>
 
-Take your time, take care of yourself,
+✨ <span style="color:#ff4d88;font-weight:bold;">Keep smiling</span> ✨<br><br>
+
+Because your smile is honestly more precious than you think.<br><br>
+
+Take your time, take care of yourself,<br>
 and I hope your day goes really well 🌸`;
 
-  document.getElementById("text").innerText = "";
- let textElement = document.getElementById("text");
-textElement.innerText = message;
+let i = 0;
+let speed = 20;
+
+let textElement = document.getElementById("text");
+textElement.innerHTML = "";
 textElement.style.opacity = 1;
+
+function typeWriter() {
+  if (i < message.length) {
+    textElement.innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+typeWriter();
 }
 </script>
 

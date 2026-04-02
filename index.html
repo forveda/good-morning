@@ -30,12 +30,23 @@ h2 {
   color:#ff4d88;
 }
 
-p {
-  color:#444;
-  font-size:16px;
-  line-height:1.8;
+#text p {
   opacity:0;
-  transition: opacity 1s ease;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  margin:10px 0;
+  color:#444;
+  line-height:1.6;
+}
+
+.show {
+  opacity:1 !important;
+  transform: translateY(0) !important;
+}
+
+.highlight {
+  color:#ff4d88;
+  font-weight:bold;
 }
 
 button {
@@ -68,7 +79,7 @@ button {
 <div class="box">
   <h2>Good Morning ☀️</h2>
 
-  <p id="text">Click below...</p>
+  <div id="text"></div>
 
   <button onclick="showMessage()">Open 💌</button>
 
@@ -78,39 +89,38 @@ button {
 <script>
 function showMessage() {
 
-let message = `Hey... just a small thing for you 😊<br><br>
+const lines = [
+"Hey... just a small thing for you 😊",
 
-I hope you woke up feeling a little lighter today.<br>
-And even if you didn't, it's okay...<br><br>
+"I hope you woke up feeling a little lighter today.",
+"And even if you didn't, it's okay...",
 
-Just don't overthink too much, alright?<br>
-Everything doesn't need to be figured out at once.<br><br>
+"Just don't overthink too much, alright?",
+"Everything doesn't need to be figured out at once.",
 
-And one more thing...<br><br>
+"And one more thing...",
 
-✨ <span style="color:#ff4d88;font-weight:bold;">Keep smiling</span> ✨<br><br>
+'✨ <span class="highlight">Keep smiling</span> ✨',
 
-Because your smile is honestly more precious than you think.<br><br>
+"Because your smile is honestly more precious than you think.",
 
-Take your time, take care of yourself,<br>
-and I hope your day goes really well 🌸`;
+"Take your time, take care of yourself,",
+"and I hope your day goes really well 🌸"
+];
 
-let i = 0;
-let speed = 20;
+let container = document.getElementById("text");
+container.innerHTML = "";
 
-let textElement = document.getElementById("text");
-textElement.innerHTML = "";
-textElement.style.opacity = 1;
+lines.forEach((line, index) => {
+  let p = document.createElement("p");
+  p.innerHTML = line;
+  container.appendChild(p);
 
-function typeWriter() {
-  if (i < message.length) {
-    textElement.innerHTML += message.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
+  setTimeout(() => {
+    p.classList.add("show");
+  }, index * 700);
+});
 
-typeWriter();
 }
 </script>
 

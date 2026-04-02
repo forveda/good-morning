@@ -12,38 +12,35 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(-45deg, #ffd6e0, #ffe6f0, #ffd1dc, #ffe4ec);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
   font-family: 'Segoe UI', sans-serif;
   text-align:center;
-  overflow:hidden;
-}
-
-@keyframes gradientBG {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
 }
 
 .box {
   background:white;
-  padding:30px;
+  padding:35px;
   border-radius:20px;
   width:85%;
   max-width:420px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.15);
-  z-index:2;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(20px); }
+  to { opacity:1; transform: translateY(0); }
 }
 
 h2 {
   color:#ff4d88;
-  animation: glow 2s ease-in-out infinite alternate;
+  margin-bottom:10px;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px #ff99bb; }
-  to { text-shadow: 0 0 15px #ff4d88; }
+.subtitle {
+  font-size:14px;
+  color:#888;
+  margin-bottom:15px;
 }
 
 #text p {
@@ -63,40 +60,23 @@ h2 {
 .highlight {
   color:#ff4d88;
   font-weight:bold;
-  font-size:18px;
+  font-size:17px;
 }
 
 button {
-  margin-top:12px;
-  padding:10px 20px;
+  margin-top:15px;
+  padding:10px 22px;
   border:none;
   background:#ff4d88;
   color:white;
   border-radius:10px;
   cursor:pointer;
   font-size:14px;
+  transition:0.3s;
 }
 
 button:hover {
   transform: scale(1.05);
-}
-
-.heart {
-  position:absolute;
-  color:#ff4d88;
-  font-size:20px;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-10vh);}
-}
-
-img {
-  width:90px;
-  margin-bottom:10px;
-  border-radius:12px;
 }
 </style>
 
@@ -105,29 +85,62 @@ img {
 <body>
 
 <div class="box">
-
-  <!-- 🌸 Cute aesthetic image -->
-  <img src="https://i.imgur.com/8Km9tLL.png">
-
   <h2>For You 🌸</h2>
+  <div class="subtitle">open this slowly…</div>
 
   <div id="text"></div>
 
-  <button id="btn" onclick="showMessage()">Open 💌</button>
-  <button onclick="playMusic()">🎶 Play Music</button>
-
+  <button onclick="showMessage()">Open 💌</button>
 </div>
-
-<!-- 🎶 Music -->
-<audio id="music">
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 function showMessage() {
 
-document.getElementById("btn").style.display = "none";
+const lines = [
+"Hey you… 😊",
 
-// Try autoplay
-let music = document.getElementById("music");
-music.play().catch(() =>
+"Good morning Veda ☀️",
+
+"I know i might said this before and i genuinely mean it …",
+
+"You’re actually a really good human being.",
+"The way you think, the way you carry yourself… it’s rare.",
+
+"And honestly, you're already perfect the way you are,",
+"and you don’t have to overthink every little thing.",
+
+"Not everything deserves that much space in your head.",
+
+"There’s something about your vibe,",
+"it’s calm… a little different… and kinda addictive 😌",
+
+"And yeah…",
+
+'✨ <span class="highlight">Keep smiling</span> ✨',
+
+"Because your smile is honestly more precious than you think.",
+"And it makes things around you feel a little better too.",
+
+"So yeah… just stay the way you are.",
+
+"Have a really good day 🌸"
+];
+
+let container = document.getElementById("text");
+container.innerHTML = "";
+
+lines.forEach((line, index) => {
+  let p = document.createElement("p");
+  p.innerHTML = line;
+  container.appendChild(p);
+
+  setTimeout(() => {
+    p.classList.add("show");
+  }, index * 700);
+});
+
+}
+</script>
+
+</body>
+</html>

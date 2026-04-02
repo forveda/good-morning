@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 🌸</title>
+<title>For Veda 🌸</title>
 
 <style>
 body {
@@ -28,7 +28,7 @@ body {
 
 .box {
   background:white;
-  padding:35px;
+  padding:30px;
   border-radius:20px;
   width:85%;
   max-width:420px;
@@ -67,15 +67,14 @@ h2 {
 }
 
 button {
-  margin-top:20px;
-  padding:12px 25px;
+  margin-top:12px;
+  padding:10px 20px;
   border:none;
   background:#ff4d88;
   color:white;
-  border-radius:12px;
+  border-radius:10px;
   cursor:pointer;
-  font-size:15px;
-  transition:0.3s;
+  font-size:14px;
 }
 
 button:hover {
@@ -93,6 +92,12 @@ button:hover {
   0% {transform: translateY(100vh);}
   100% {transform: translateY(-10vh);}
 }
+
+img {
+  width:90px;
+  margin-bottom:10px;
+  border-radius:12px;
+}
 </style>
 
 </head>
@@ -100,69 +105,29 @@ button:hover {
 <body>
 
 <div class="box">
-  <h2>Good Morning ☀️</h2>
+
+  <!-- 🌸 Cute aesthetic image -->
+  <img src="https://i.imgur.com/8Km9tLL.png">
+
+  <h2>For You 🌸</h2>
+
   <div id="text"></div>
+
   <button id="btn" onclick="showMessage()">Open 💌</button>
+  <button onclick="playMusic()">🎶 Play Music</button>
+
 </div>
 
-<!-- Music -->
-<audio id="music" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+<!-- 🎶 Music -->
+<audio id="music">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function showMessage() {
 
 document.getElementById("btn").style.display = "none";
 
-// Play music
+// Try autoplay
 let music = document.getElementById("music");
-music.play();
-
-const lines = [
-"Hey... just a small thing for you 😊",
-
-"Good morning Veda ☀️",
-
-"Just wanted to say… you’re actually a really good human being.",
-"The way you are, it’s rare.",
-
-"And honestly, you're already perfect the way you are,",
-"you don’t have to overthink everything.",
-
-"There’s something about your vibe,",
-"it’s calm… and kinda addictive 😌",
-
-"And yeah…",
-
-'✨ <span class="highlight">Keep smiling</span> ✨',
-
-"Because your smile is honestly more precious than you think.",
-
-"Have a really good day 🌸"
-];
-
-let container = document.getElementById("text");
-
-lines.forEach((line, index) => {
-  let p = document.createElement("p");
-  p.innerHTML = line;
-  container.appendChild(p);
-
-  setTimeout(() => {
-    p.classList.add("show");
-  }, index * 800);
-});
-
-// Floating hearts
-for(let i=0;i<15;i++){
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random()*100 + "vw";
-  heart.style.animationDuration = (3 + Math.random()*3) + "s";
-  document.body.appendChild(heart);
-}
-}
-</script>
-
-</body>
-</html>
+music.play().catch(() =>
